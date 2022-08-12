@@ -1,0 +1,50 @@
+<div class="h-screen grid place-items-center bg-blue-200">
+
+    <div class="w-1/2">
+        <h1 class="text-center text-3xl mb-8">{{ action | titlecase }} an item</h1>
+
+        <form class="bg-white px-8 py-6 rounded-lg w-full max-w-md mx-auto" #itemForm="ngForm"
+            (submit)="itemForm.valid && handleSubmit()">
+            <div class="form-control mb-4">
+                <label class="label" for="name">
+                    <span class="label-text">Name</span>
+                </label>
+                <input type="text" name="name" placeholder="eg. Eggs" class="input input-bordered w-full"
+                    [(ngModel)]="data.name" required />
+            </div>
+
+            <div class="form-control mb-4">
+                <label class="label" for="category">
+                    <span class="label-text">Category</span>
+                </label>
+                <input type="text" name="category" placeholder="eg. poultry" class="input input-bordered w-full"
+                    [(ngModel)]="data.category" required />
+            </div>
+
+            <div class="form-control mb-4">
+                <label class="label" for="quantity">
+                    <span class="label-text">Quantity</span>
+                </label>
+                <input type="number" name="quantity" placeholder="1-10" class="input input-bordered w-full"
+                    [(ngModel)]="data.quantity" required />
+            </div>
+
+            <div class="form-control mb-4">
+                <label class="label" for="cost">
+                    <span class="label-text">Cost</span>
+                </label>
+                <input type="number" name="cost" placeholder="0" class="input input-bordered w-full"
+                    [(ngModel)]="data.cost" required />
+            </div>
+
+
+            <button class="btn btn-primary btn-block text-white mt-8 mb-2" type="submit">
+                {{ action === 'add' ? 'Add' : 'Save' }}
+            </button>
+
+            <button class="btn btn-link btn-block text-gray-800 hover:text-error" type="reset"
+                routerLink="/">Cancel</button>
+        </form>
+    </div>
+
+</div>
