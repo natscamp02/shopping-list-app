@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService } from '../list.service';
-import { Item, PartialItem } from '../item';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CategoryService } from 'src/app/categories/category.service';
+import { Category } from 'src/app/categories/category';
 
 @Component({
     selector: 'app-item-form',
@@ -18,22 +19,30 @@ export class ItemFormComponent implements OnInit {
         quantity: null,
         cost: null
     };
+    categories: Category[] = [];
 
-    constructor(private listService: ListService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private listService: ListService, private categoryService: CategoryService, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
         this.id = this.route.snapshot.params['id'];
+        if (this.id) this._getItemByParamId();
 
-        if (this.id) {
-            this.listService.getItemById(this.id).subscribe((res) => {
-                if (res.status === 'success') {
-                    this.data = { ...res.data!, _id: undefined };
-                    this.action = 'edit';
+        this._getAllCategories();
+    }
 
-                    console.log(this.data);
-                }
-            });
-        }
+    private _getItemByParamId(): void {
+        this.listService.getItemById(this.id!).subscribe((res) => {
+            if (res.status === 'success') {
+                this.data = { ...res.data!, category: res.data!.category?._id };
+                this.action = 'edit';
+            }
+        });
+    }
+
+    private _getAllCategories(): void {
+        this.categoryService.getAllCategories().subscribe(res => {
+            if (res.status === 'success') this.categories = res.data!;
+        })
     }
 
     handleSubmit(): void {

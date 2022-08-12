@@ -1,7 +1,7 @@
-<div class="h-screen grid place-items-center bg-blue-200">
+<div class="h-full pt-8 bg-blue-200">
 
-    <div class="w-1/2">
-        <h1 class="text-center text-3xl mb-8">{{ action | titlecase }} an item</h1>
+    <div class="w-full max-w-md mx-auto">
+        <h1 class="text-center text-3xl mb-4">{{ action | titlecase }} an item</h1>
 
         <form class="bg-white px-8 py-6 rounded-lg w-full max-w-md mx-auto" #itemForm="ngForm"
             (submit)="itemForm.valid && handleSubmit()">
@@ -17,24 +17,33 @@
                 <label class="label" for="category">
                     <span class="label-text">Category</span>
                 </label>
-                <input type="text" name="category" placeholder="eg. poultry" class="input input-bordered w-full"
-                    [(ngModel)]="data.category" required />
+                <select name="category" class="select select-bordered w-full" [(ngModel)]="data.category" required>
+                    <option value="" disabled selected hidden>-- Select a category --</option>
+                    <option [value]="cat._id" *ngFor="let cat of categories">{{cat.name}}</option>
+                </select>
+                <label class="label">
+                    <span class="label-text-alt">
+                        <a class="text-info hover:underline" routerLink="/categories/add">Add a category</a>
+                    </span>
+                </label>
             </div>
 
-            <div class="form-control mb-4">
-                <label class="label" for="quantity">
-                    <span class="label-text">Quantity</span>
-                </label>
-                <input type="number" name="quantity" placeholder="1-10" class="input input-bordered w-full"
-                    [(ngModel)]="data.quantity" required />
-            </div>
+            <div class="flex gap-4">
+                <div class="form-control mb-4">
+                    <label class="label" for="quantity">
+                        <span class="label-text">Quantity</span>
+                    </label>
+                    <input type="number" name="quantity" placeholder="eg. 1-10" class="input input-bordered w-full"
+                        [(ngModel)]="data.quantity" required />
+                </div>
 
-            <div class="form-control mb-4">
-                <label class="label" for="cost">
-                    <span class="label-text">Cost</span>
-                </label>
-                <input type="number" name="cost" placeholder="0" class="input input-bordered w-full"
-                    [(ngModel)]="data.cost" required />
+                <div class="form-control mb-4">
+                    <label class="label" for="cost">
+                        <span class="label-text">Cost</span>
+                    </label>
+                    <input type="number" name="cost" placeholder="eg. 100" class="input input-bordered w-full"
+                        [(ngModel)]="data.cost" required />
+                </div>
             </div>
 
 

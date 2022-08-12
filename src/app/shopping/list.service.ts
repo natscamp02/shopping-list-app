@@ -1,4 +1,4 @@
-import { Item, PartialItem } from './item';
+import { Item } from './item';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
@@ -25,11 +25,11 @@ export class ListService {
         return this.http.get<ApiResponse<Item>>(this.API_URL + id).pipe(catchError(this._handleHttpError));
     }
 
-    createNewItem(item: PartialItem): Observable<ApiResponse<Item>> {
+    createNewItem(item: Item): Observable<ApiResponse<Item>> {
         return this.http.post<ApiResponse<Item>>(this.API_URL, item).pipe(catchError(this._handleHttpError));
     }
 
-    updateItem(id: string, item: PartialItem): Observable<ApiResponse<Item>> {
+    updateItem(id: string, item: Item): Observable<ApiResponse<Item>> {
         return this.http.put<ApiResponse<Item>>(this.API_URL + id, item).pipe(catchError(this._handleHttpError));
     }
 

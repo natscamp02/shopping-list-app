@@ -1,6 +1,16 @@
-<div class="grid h-screen grid-cols-[max-content,_1fr]">
-    <header class="">
-        <h1></h1>
+<div class="grid h-screen grid-rows-[max-content,_1fr]">
+    <header class="container border-b">
+        <nav class="navbar bg-base-100">
+            <div class="flex-1">
+                <a class="normal-case text-xl">Shopping List</a>
+            </div>
+            <div class="flex-none">
+                <ul class="menu gap-2 menu-horizontal p-0">
+                    <li><a routerLink="/list">My List</a></li>
+                    <li><a routerLink="/categories">Categories</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
 
     <main>

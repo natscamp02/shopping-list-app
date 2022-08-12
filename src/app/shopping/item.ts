@@ -1,10 +1,7 @@
-export interface PartialItem {
-    name: string;
-    category: string;
-    quantity: number;
-    cost: number;
-}
+import { Category } from "../categories/category";
 
-export interface Item extends PartialItem {
-    _id: string;
+export class Item {
+
+    constructor(public _id?: string, public name?: string, public category?: Category, public quantity?: number, public cost?: number) { }
+
 }

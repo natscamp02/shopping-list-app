@@ -1,0 +1,18 @@
+<div class="h-screen grid place-items-center absolute inset-0 z-10 bg-black bg-opacity-50 backdrop-blur-sm">
+
+    <div class="bg-white relative p-12 rounded-lg w-full max-w-md">
+        <h1 class="text-3xl font-semibold mb-6 text-center">{{action | titlecase}} a category</h1>
+
+        <form #categoryForm="ngForm" (submit)="categoryForm.valid && handleSubmit()" (reset)="back()">
+            <div class="form-control">
+                <label class="label" for="name"><span class="label-text">Category Name</span></label>
+                <input type="text" name="name" class="input input-bordered w-full" [(ngModel)]="data.name" required>
+            </div>
+
+            <div class="flex gap-2 mt-8">
+                <button class="btn btn-success flex-1" type="submit">{{ action==='add' ? 'Add' : 'Save' }}</button>
+                <button class="btn btn-link" type="reset">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

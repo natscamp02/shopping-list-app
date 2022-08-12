@@ -1,5 +1,5 @@
-<div class="h-screen pt-20 bg-gradient-to-br from-[#a1c4fd] to-[#c3e9fb] bg-cover bg-no-repeat">
-    <h1 class="text-3xl text-center mb-8">Shopping List</h1>
+<div class="h-full pt-24 bg-gradient-to-br from-[#a1c4fd] to-[#c3e9fb] bg-cover bg-no-repeat">
+    <h1 class="text-3xl text-center mb-8">My List</h1>
 
     <div class="max-h-80 h-full overflow-auto">
         <ul class="max-w-xl mx-auto space-y-4">
@@ -25,7 +25,7 @@
                 <div>
                     <div class="flex gap-2 items-center">
                         <h2 class="text-lg">{{item.name}}</h2>
-                        <span class="badge badge-accent capitalize">{{item.category}}</span>
+                        <span *ngIf="item.category" class="badge badge-accent capitalize">{{item.category.name}}</span>
                     </div>
 
                     <span class="font-bold">{{item.cost | currency}}</span>
@@ -52,7 +52,7 @@
                                 </a>
                             </li>
                             <li>
-                                <button class="text-red-500" (click)="removeItem(item._id)">
+                                <button class="text-red-500" (click)="removeItem(item._id!)">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round"
