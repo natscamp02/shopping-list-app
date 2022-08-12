@@ -24,7 +24,7 @@ export class ListComponent implements OnInit {
     }
 
     updateQuantity(item: Item, amount: -1 | 1): void {
-        const newQuantity = amount === -1 ? Math.max(item.quantity! + amount, 1) : Math.min(item.quantity! + amount, 10);
+        const newQuantity = amount === -1 ? Math.max(item.quantity! + amount, 1) : Math.min(item.quantity! + amount, 999);
 
         this.listService.updateItem(item._id!, { ...item, quantity: newQuantity }).subscribe((res) => {
             if (res.status === 'success') this._getAllItems();
